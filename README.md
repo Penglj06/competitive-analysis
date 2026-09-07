@@ -104,9 +104,9 @@ git clone https://github.com/Penglj06/competitive-analysis.git ~/.workbuddy/skil
 
 ```
 .
-├── SKILL.md                        # 主文件：触发词、12 条硬性约束、九步工作流
+├── SKILL.md                        # 主文件：触发词、12 条硬性约束、七步工作流（+ 走查/Word/产物环节）
 ├── references/
-│   └── analysis-playbook.md        # 七步 Prompt 模板、证据分级细则、深度走查指引
+│   └── analysis-playbook.md        # 七步核心流程的 Prompt 模板、证据分级细则、深度走查指引
 ├── assets/
 │   └── report-template.md          # 报告结构模板（含证据等级列、基线、决策三分类）
 ├── examples/
