@@ -1,0 +1,12 @@
+# 统一行尾为 LF
+# 背景：仓库此前混用 CRLF / LF（不同编辑器写入所致），
+# 会导致「只改一行、diff 却显示整个文件」的假改动，污染提交历史与 blame。
+* text=auto eol=lf
+
+# 二进制文件不做换行转换（避免被当作文本处理而损坏）
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.webp binary
+*.zip  binary
