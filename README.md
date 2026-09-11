@@ -1,6 +1,6 @@
 # competitive-analysis
 
-![version](https://img.shields.io/badge/version-1.3.1-blue.svg)
+![version](https://img.shields.io/badge/version-1.4.1-blue.svg)
 ![license](https://img.shields.io/badge/license-MIT-green.svg)
 ![type](https://img.shields.io/badge/type-agent--skill-orange.svg)
 
