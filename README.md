@@ -1,12 +1,18 @@
 # competitive-analysis
 
-![version](https://img.shields.io/badge/version-1.4.1-blue.svg)
+![version](https://img.shields.io/badge/version-1.5.0-blue.svg)
 ![license](https://img.shields.io/badge/license-MIT-green.svg)
 ![type](https://img.shields.io/badge/type-agent--skill-orange.svg)
 
 把「竞品分析」从**截图合集 + 功能对比表 + 一句套话结论**，升级为**可执行的产品决策输入**。
 
 最终回答的不是「竞品怎么做」，而是 —— **「看完竞品之后，我们该怎么做」**。
+
+> **语言**：产出语言**跟随用户**（用户用中文则中文，用其他语言则用其语言；无法判断时默认中文，
+> 并可询问或提供双语选项）。本仓库文档以中文书写，不代表强制输出中文。
+>
+> **范围与安全**：本 skill 只提供分析方法与产出规范，**本身不安装任何软件、不修改系统环境、
+> 不自行发起网络访问**；需要外部能力（如页面走查、Word 转换）时，先取得用户同意。
 
 ---
 
@@ -83,14 +89,17 @@ skillhub install competitive-analysis --namespace user_cba53469
 git clone https://github.com/Penglj06/competitive-analysis.git ~/.workbuddy/skills/competitive-analysis
 ```
 
-**触发**（命中任一即启动）
+**触发**（需用户显式表达竞品分析意图，启动前会先与你确认）
 
 ```
 帮我做一次竞品分析（对象：XXX）
-分析下 XX 和我们的差异
-这个功能要不要做，先看下别人怎么做的
-我们的产品和 XX 比，差在哪 / 强在哪
+对 XX 和我们的产品做一次对标分析
+拆一下 XX 的核心流程，看我们该借鉴什么、什么不能照抄
 ```
+
+> 判定以**用户显式意图**为准，不做关键词字面匹配、不主动接管对话。
+> 只是随口聊某个产品、问功能清单或使用教程，都不会触发；即使用户意图明确，
+> 也会先确认是否推进、是否允许检索外部资料，再进入流程。
 
 **你会拿到什么**
 
@@ -104,7 +113,7 @@ git clone https://github.com/Penglj06/competitive-analysis.git ~/.workbuddy/skil
 
 ```
 .
-├── SKILL.md                        # 主文件：触发词、12 条硬性约束、七步工作流（+ 走查/Word/产物环节）
+├── SKILL.md                        # 主文件：触发判定、12 条硬性约束、七步工作流（+ 走查/Word/产物环节）
 ├── references/
 │   └── analysis-playbook.md        # 七步核心流程的 Prompt 模板、证据分级细则、深度走查指引
 ├── assets/
@@ -121,12 +130,12 @@ git clone https://github.com/Penglj06/competitive-analysis.git ~/.workbuddy/skil
 
 核心分析（定位 → 分层 → 拆解 → 对比 → 反推 → 二分 → 决策）**不依赖任何外部工具**，装了就能跑。
 
-以下两项为可选增强：
+以下两项为**可选增强**，均**由环境预置、本 skill 不负责安装、不提供安装命令**：
 
 | 能力 | 依赖 | 缺失时会怎样 |
 |---|---|---|
-| 深度走查（把证据从「公开」升级为「走查」） | `agent-browser`（需 `npm install` + 下载 Chromium） | 降级为公开资料搜索，证据标「公开」 |
-| Word 报告输出 | `html-to-docx` skill | 降级交付 Markdown + 内嵌图表 HTML |
+| 深度走查（把证据从「公开」升级为「走查」） | 环境已提供的页面访问能力（须用户同意后使用） | 降级为公开资料搜索，证据标「公开」；**不会自动安装任何依赖** |
+| Word 报告输出 | 已启用、且来源已单独审阅的 `html-to-docx` 能力 | 降级交付 Markdown + 内嵌图表 HTML |
 
 ---
 
@@ -147,4 +156,6 @@ A：如实并列两个口径，标注「官方自述，未独立核验」，不�
 
 [MIT](./LICENSE) —— 可自由使用、修改、分发。
 
+> **1.5.0 变更**：触发判定收窄为「用户显式意图 + 启动前确认」，不再做关键词字面匹配；移除一切安装/环境修改指令（外部能力改为可选、由环境预置、需用户同意）；产出语言改为跟随用户语言。核心方法论（七步、证据分级、借鉴/照抄二分）不变。
+>
 > v1.4 规则：关键定位字段缺失时暂停；补充字段可标为待确认假设。支持分步/一次性模式，证据使用 Evidence ID 与置信度追踪，工具依赖按宿主能力适配。
