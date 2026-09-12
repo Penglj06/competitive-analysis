@@ -4,7 +4,7 @@ slug: competitive-analysis
 description: 结构化竞品分析方法论，把竞品分析从「截图堆资料」升级为「支撑产品决策」。仅在用户明确表达竞品分析 / 对标分析 / 差异化分析意图，或明确要求对某个产品、平台、工具做带对比对象的调研时使用；产出经证据分级、借鉴/照抄二分、决策三分类的分析结论。
 description_zh: "结构化竞品分析：拆流程、反推策略、借鉴/照抄二分，落到产品决策"
 description_en: "Structured competitive analysis: flow decomposition, strategy inference, adopt-vs-copy, land on product decisions"
-version: 1.5.0
+version: 1.5.1
 displayName: "竞品分析"
 summary: "把竞品分析从截图堆资料升级为产品决策输入：先定目标与基线，分三层选竞品，拆核心流程，多维对比，反推取舍，借鉴/照抄二分，最后落到立即做/先验证/不做三类决策。全程证据分级，不编指标。通用方法论，已在 AI4S / 学术科研工具竞品上实战验证。"
 tags: [竞品分析, 对标分析, 产品决策, 方法论]

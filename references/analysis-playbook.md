@@ -291,58 +291,28 @@ DAU / 留存 / 转化拿不到，问了必编。若要量化，只用公开信�
 
 ---
 
-## 十一、PNG 示意图绘制指引（已端到端验证）
+## 十一、PNG 示意图绘制指引
 
 > 图表进 Word 必须用 PNG。SVG 进不了 Word。
-> 以下方案已端到端验证通过：HTML 含 `<img src="本地 PNG">` → html-to-docx → docx 内有图片。
+> 已验证路径：HTML 含 `<img src="本地 PNG">` → 转换能力 → docx 内有图片。
 
 ### 何时用示意图 vs 走查截图
 
 - **走查截图**（首选）：走查时保存的关键页面截图（PNG），是最有证据力的配图，又满足含图要求
 - **示意图**：竞品格局分层图、差异化定位图、对比图、流程图等结构化图（无现成截图可用时）
 
-### 用 Pillow 画中文 PNG（macOS）
+### 怎么产出 PNG（高层指引）
 
-```python
-from PIL import Image, ImageDraw, ImageFont
+本 skill **只描述需要什么图，不内嵌可执行的绘图脚本**。生成方式按环境能力选择：
 
-# 中文字体路径（macOS 系统自带，无需安装）
-font_path = '/System/Library/Fonts/Hiragino Sans GB.ttc'
-font_title = ImageFont.truetype(font_path, 16)
-font_body = ImageFont.truetype(font_path, 13)
+1. **优先用宿主已有的绘图 / 图表能力**直接产出 PNG；
+2. 若环境没有现成能力、确需临时写脚本绘图：**先取得用户同意**，在受控工作区中执行，
+   并**只写入报告目录**，不触碰其他路径；
+3. 都不具备 → 走下方「降级路径」。
 
-img = Image.new('RGB', (680, 380), (250, 250, 247))  # 米色背景
-d = ImageDraw.Draw(img)
-d.text((20, 12), '竞品格局（我方产品视角）', font=font_title, fill=(30, 30, 30))
-# 圆角矩形卡片：d.rounded_rectangle([x1,y1,x2,y2], radius=8, fill=..., outline=..., width=1)
-# 文本：d.text((x, y), text, font=..., fill=...)
-img.save('/path/to/chart.png')
-```
-
-**支持能力**（端到端验证过）：
-- 中文文本不乱码（Hiragino Sans GB.ttc 渲染清晰）
-- 中英混合文本（"我方产品（学科范式 + 资源底座）"渲染正常）
-- 圆角矩形 + 多色填充（用于分层卡、表格、对比块）
-- 横线/分隔线
-- PNG 输出（≤16cm 宽，html-to-docx 自动缩放）
-
-**不支持**（别尝试）：
-- 箭头、流程连接线（要画箭头/连线，用 matplotlib 或手写 SVG→PNG）
-- 复杂图表（柱状/折线/饼图）—— 用 matplotlib，更专业
-
-### 何时用 matplotlib（需要箭头或统计图）
-
-```python
-import matplotlib.pyplot as plt
-import matplotlib
-# macOS 中文字体
-matplotlib.rcParams['font.sans-serif'] = ['Hiragino Sans GB']
-matplotlib.rcParams['axes.unicode_minus'] = False
-
-fig, ax = plt.subplots(figsize=(8, 5))
-# ... 画图
-plt.savefig('/path/to/chart.png', dpi=150, bbox_inches='tight')
-```
+绘制要点（不涉及具体代码）：中文文本使用系统自带中文字体以避免乱码；
+输出 PNG（≤16cm 宽，Word 内自动缩放）；箭头、流程连接线或统计图（柱状 / 折线 / 饼）
+需相应的绘图能力，**绘图代码的执行须经用户批准**。
 
 ### HTML 引用 PNG 进 Word
 
@@ -356,18 +326,17 @@ plt.savefig('/path/to/chart.png', dpi=150, bbox_inches='tight')
 
 ### 降级路径
 
-- Pillow/matplotlib 不可用 → 用走查截图顶替
+- 无绘图能力 → 用走查截图顶替
 - 都没有图 → Markdown 表格当图 + 报告头注明「本版无图，详见表格」
 
-## 十二、跨场景适配提示
+## 十二、适用范围边界
 
-这套工作流是通用调研框架，换掉「竞品」可套到：
+本 skill 只服务**竞品 / 对标 / 差异化分析**。以下**不属于其自动适用范围**，应改用相应方法或 skill：
 
-- **技术选型**：拆架构机制、反推设计取舍、迁移判断
-- **benchmark 调研**：拆评测方法、反推评测意图、迁移到自己的评测
-- **学术工具/文献综述**：拆研究流程位点、反推方法取舍
-- 用户访谈整理不属于本 skill 的自动适用范围，应使用访谈研究类 skill
+- 技术选型、benchmark 调研：仅当用户**明确要求以「竞品对比」方式**推进时，才按本框架处理，否则用对应领域方法
+- 用户访谈整理：使用访谈研究类 skill
+- 单纯文献综述（无竞品或方案对比）：不适用本 skill
 
-**学术产品（AI4S）特别提示**：学术产品的公开指标（DAU、留存）几乎查不到，
-第 5 步强行反推指标会更假。改为反推「它服务的研究/业务流程位点是哪一段」——
+**学术产品（AI4S）竞品分析特别提示**：学术产品的公开指标（DAU、留存）几乎查不到，
+第 5 步强行反推指标会更假。改为反推「它服务的研究 / 业务流程位点是哪一段」——
 这个从产品形态能观察到，比编指标可靠。

@@ -1,6 +1,6 @@
 # competitive-analysis
 
-![version](https://img.shields.io/badge/version-1.5.0-blue.svg)
+![version](https://img.shields.io/badge/version-1.5.1-blue.svg)
 ![license](https://img.shields.io/badge/license-MIT-green.svg)
 ![type](https://img.shields.io/badge/type-agent--skill-orange.svg)
 
@@ -156,6 +156,8 @@ A：如实并列两个口径，标注「官方自述，未独立核验」，不�
 
 [MIT](./LICENSE) —— 可自由使用、修改、分发。
 
+> **1.5.1 变更**：清掉 ClawHub 安全扫描残留的 2 条低危建议——playbook 绘图章节移除可执行 Python 代码、改为「高层指引 + 执行需用户批准」；「跨场景适配」收窄为「适用范围边界」，不再外延到技术选型/文献综述等超范围场景。
+>
 > **1.5.0 变更**：触发判定收窄为「用户显式意图 + 启动前确认」，不再做关键词字面匹配；移除一切安装/环境修改指令（外部能力改为可选、由环境预置、需用户同意）；产出语言改为跟随用户语言。核心方法论（七步、证据分级、借鉴/照抄二分）不变。
 >
 > v1.4 规则：关键定位字段缺失时暂停；补充字段可标为待确认假设。支持分步/一次性模式，证据使用 Evidence ID 与置信度追踪，工具依赖按宿主能力适配。
